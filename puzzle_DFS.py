@@ -66,7 +66,7 @@ def solve_puzzle(puzzle, target_puzzle, pcc, stack=0, limit=10, path=None):
                 new_moving = path + [move[i][0]]
 
             new_puzzle[pcc[0]][pcc[1]], new_puzzle[move[i][1][0] + pcc[0]][move[i][1][1] + pcc[1]] = new_puzzle[move[i][1][0] + pcc[0]][move[i][1][1] + pcc[1]], new_puzzle[pcc[0]][pcc[1]]
-            result = solve_puzzle(new_puzzle, target_puzzle, [move[i][1][0] + pcc[0], move[i][1][1] + pcc[1]], stack=stack + 1, path=new_moving,limit=limit,spasi=spasi)
+            result = solve_puzzle(new_puzzle, target_puzzle, [move[i][1][0] + pcc[0], move[i][1][1] + pcc[1]], stack=stack + 1, path=new_moving,limit=limit)
             save_result.append(result)
             new_puzzle[pcc[0]][pcc[1]], new_puzzle[move[i][1][0] + pcc[0]][move[i][1][1] + pcc[1]] = new_puzzle[move[i][1][0] + pcc[0]][move[i][1][1] + pcc[1]], new_puzzle[pcc[0]][pcc[1]]
 
