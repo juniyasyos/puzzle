@@ -29,15 +29,7 @@ def display_moves(moves,puzzle_show,initial_pcc):
         print(move.ljust(10)," : ",puzzle_show[1])
         print(" ".ljust(10)," : ",puzzle_show[2])
 
-def solve_puzzle(puzzle, target_puzzle, pcc, stack=0, limit=10, path=None,spasi=0):
-    # if path is not None:
-    #     print("-"*spasi,"kelas [",path[stack-1],"][",stack,"]")
-    if stack == 1:
-        print("\n")
-        print(" ".ljust(10)," : ",puzzle[0])
-        print(" ".ljust(10)," : ",puzzle[1])
-        print(" ".ljust(10)," : ",puzzle[2])
-    spasi+=1
+def solve_puzzle(puzzle, target_puzzle, pcc, stack=0, limit=10, path=None):
     def valid(x, y):
         if 0 <= x < 3 and 0 <= y < 3:
             return True
