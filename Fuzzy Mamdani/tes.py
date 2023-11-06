@@ -66,38 +66,137 @@ class PengendaliFuzzyMamdani:
 def halaman_utama():
     # Inisialisasi variabel-variabel input dan output
     variabel_input = {
-        'Kelembapan': {
-            'Rendah': (0, 30),
-            'Normal': (20, 80),
-            'Tinggi': (70, 100)
+        'Kain' : {
+            'SEDIKIT': [410, 677],
+            'SEDANG': [543.5, 810.5],
+            'BANYAK': [677, 944]
         },
-        'Suhu': {
-            'Rendah': (0, 20),
-            'Normal': (15, 25),
-            'Tinggi': (20, 40)
-        }
-    }
+        'Malam' : {
+            'SEDIKIT': [51.25, 84.6],
+            'SEDANG': [67.9, 101.3],
+            'BANYAK': [84.6, 118]
+        },
+        'Pewarna' : {
+            'SEDIKIT': [102.5, 169.3],
+            'SEDANG': [135.9, 202.6],
+            'BANYAK': [169.3, 236]
+        },
+        'BiayaProduksi' : {
+            'SEDIKIT': [5350500, 10988350],
+            'SEDANG': [8169425, 13807275],
+            'BANYAK': [10988350, 16626200]
+        },
+        'Permintaan' : {
+            'SEDIKIT': [196, 341],
+            'SEDANG': [268, 413],
+            'BANYAK': [341, 485]
+        },
+        'Stok' : {
+            'SEDIKIT': [22, 49],
+            'SEDANG': [35, 62],
+            'BANYAK': [49, 75]
+        }}
+
 
     variabel_output = {
-        'Kecepatan Kipas Angin': {
-            'Lambat': (0, 30),
-            'Sedang': (20, 70),
-            'Cepat': (50, 100)
-        }
-    }
+        'JumlahProduksi' : {
+            'SEDIKIT': [205, 339],
+            'SEDANG': [272, 405],
+            'BANYAK': [339, 472]
+            }}
 
     # Inisialisasi pengendali fuzzy Mamdani
     pengendali_fuzzy = PengendaliFuzzyMamdani(variabel_input, variabel_output)
+    
+    # Aturan-aturan fuzzy (10 aturan)
+    pengendali_fuzzy.tambahkan_aturan([
+        ('Kain', 'SEDIKIT'),
+        ('Malam', 'SEDIKIT'),
+        ('Pewarna', 'SEDIKIT'),
+        ('BiayaProduksi', 'SEDIKIT'),
+        ('Permintaan', 'SEDIKIT'),
+        ('Stok', 'SEDIKIT')
+    ], [('JumlahProduksi', 'SEDIKIT')])
 
-    # Tambahkan aturan-aturan fuzzy
-    pengendali_fuzzy.tambahkan_aturan([('Kelembapan', 'Rendah'), ('Suhu', 'Tinggi')], [('Kecepatan Kipas Angin', 'Cepat')])
-    pengendali_fuzzy.tambahkan_aturan([('Kelembapan', 'Normal'), ('Suhu', 'Normal')], [('Kecepatan Kipas Angin', 'Sedang')])
-    pengendali_fuzzy.tambahkan_aturan([('Kelembapan', 'Tinggi'), ('Suhu', 'Rendah')], [('Kecepatan Kipas Angin', 'Lambat')])
+    pengendali_fuzzy.tambahkan_aturan([
+        ('Kain', 'SEDANG'),
+        ('Malam', 'SEDANG'),
+        ('Pewarna', 'SEDANG'),
+        ('BiayaProduksi', 'SEDIKIT'),
+        ('Permintaan', 'SEDANG'),
+        ('Stok', 'SEDANG')
+    ], [('JumlahProduksi', 'BANYAK')])
+
+    pengendali_fuzzy.tambahkan_aturan([
+        ('Kain', 'SEDIKIT'),
+        ('Malam', 'SEDANG'),
+        ('Pewarna', 'SEDANG'),
+        ('BiayaProduksi', 'SEDIKIT'),
+        ('Permintaan', 'SEDIKIT'),
+        ('Stok', 'SEDIKIT')
+    ], [('JumlahProduksi', 'SEDIKIT')])
+
+    pengendali_fuzzy.tambahkan_aturan([
+        ('Kain', 'SEDANG'),
+        ('Malam', 'SEDANG'),
+        ('Pewarna', 'SEDANG'),
+        ('BiayaProduksi', 'SEDIKIT'),
+        ('Permintaan', 'SEDIKIT'),
+        ('Stok', 'SEDIKIT')
+    ], [('JumlahProduksi', 'BANYAK')])
+
+    pengendali_fuzzy.tambahkan_aturan([
+        ('Kain', 'SEDIKIT'),
+        ('Malam', 'SEDIKIT'),
+        ('Pewarna', 'SEDIKIT'),
+        ('BiayaProduksi', 'SEDANG'),
+        ('Permintaan', 'SEDIKIT'),
+        ('Stok', 'SEDIKIT')
+    ], [('JumlahProduksi', 'SEDIKIT')])
+
+    pengendali_fuzzy.tambahkan_aturan([
+        ('Kain', 'SEDANG'),
+        ('Malam', 'SEDANG'),
+        ('Pewarna', 'SEDANG'),
+        ('BiayaProduksi', 'SEDANG'),
+        ('Permintaan', 'SEDIKIT'),
+        ('Stok', 'SEDIKIT')
+    ], [('JumlahProduksi', 'BANYAK')])
+
+    pengendali_fuzzy.tambahkan_aturan([
+        ('Kain', 'SEDIKIT'),
+        ('Malam', 'SEDIKIT'),
+        ('Pewarna', 'SEDIKIT'),
+        ('BiayaProduksi', 'SEDIKIT'),
+        ('Permintaan', 'SEDANG'),
+        ('Stok', 'SEDANG')
+    ], [('JumlahProduksi', 'BANYAK')])
+
+    pengendali_fuzzy.tambahkan_aturan([
+        ('Kain', 'SEDANG'),
+        ('Malam', 'SEDANG'),
+        ('Pewarna', 'SEDANG'),
+        ('BiayaProduksi', 'SEDANG'),
+        ('Permintaan', 'SEDANG'),
+        ('Stok', 'SEDANG')
+    ], [('JumlahProduksi', 'BANYAK')])
 
     # Masukkan nilai input
+    nilai_kain = 600
+    nilai_malam = 90
+    nilai_pewarna = 180
+    nilai_biaya_produksi = 12000000
+    nilai_permintaan = 300
+    nilai_stok = 55
+
+    # Anda dapat menggunakan nilai-nilai ini dalam fungsi fuzzifikasi_input pada pengendali logika fuzzy Anda
     nilai_input = {
-        'Kelembapan': 20,
-        'Suhu': 35
+        'Kain': nilai_kain,
+        'Malam': nilai_malam,
+        'Pewarna': nilai_pewarna,
+        'BiayaProduksi': nilai_biaya_produksi,
+        'Permintaan': nilai_permintaan,
+        'Stok': nilai_stok
     }
 
     # Fuzzifikasi input
