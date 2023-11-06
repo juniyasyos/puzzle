@@ -221,35 +221,110 @@ def halaman_utama():
         ('Stok', 'SEDIKIT')
     ], [('JumlahProduksi', 'SEDANG')])
 
-    # Masukkan nilai input
-    nilai_kain = 600
-    nilai_malam = 90
-    nilai_pewarna = 180
-    nilai_biaya_produksi = 12000000
-    nilai_permintaan = 300
-    nilai_stok = 55
-
-    # Anda dapat menggunakan nilai-nilai ini dalam fungsi fuzzifikasi_input pada pengendali logika fuzzy Anda
-    nilai_input = {
-        'Kain': nilai_kain,
-        'Malam': nilai_malam,
-        'Pewarna': nilai_pewarna,
-        'BiayaProduksi': nilai_biaya_produksi,
-        'Permintaan': nilai_permintaan,
-        'Stok': nilai_stok
+    # Contoh 10 nilai input
+    nilai_input_1 = {
+        'Kain': 550,
+        'Malam': 85,
+        'Pewarna': 170,
+        'BiayaProduksi': 11000000,
+        'Permintaan': 280,
+        'Stok': 50
     }
 
+    nilai_input_2 = {
+        'Kain': 480,
+        'Malam': 75,
+        'Pewarna': 160,
+        'BiayaProduksi': 10500000,
+        'Permintaan': 260,
+        'Stok': 45
+    }
+
+    nilai_input_3 = {
+        'Kain': 700,
+        'Malam': 95,
+        'Pewarna': 190,
+        'BiayaProduksi': 12500000,
+        'Permintaan': 320,
+        'Stok': 58
+    }
+
+    nilai_input_4 = {
+        'Kain': 620,
+        'Malam': 88,
+        'Pewarna': 175,
+        'BiayaProduksi': 11200000,
+        'Permintaan': 290,
+        'Stok': 53
+    }
+
+    nilai_input_5 = {
+        'Kain': 530,
+        'Malam': 80,
+        'Pewarna': 165,
+        'BiayaProduksi': 10800000,
+        'Permintaan': 270,
+        'Stok': 47
+    }
+
+    nilai_input_6 = {
+        'Kain': 590,
+        'Malam': 92,
+        'Pewarna': 185,
+        'BiayaProduksi': 11800000,
+        'Permintaan': 310,
+        'Stok': 56
+    }
+
+    nilai_input_7 = {
+        'Kain': 510,
+        'Malam': 78,
+        'Pewarna': 162,
+        'BiayaProduksi': 10600000,
+        'Permintaan': 265,
+        'Stok': 49
+    }
+
+    nilai_input_8 = {
+        'Kain': 650,
+        'Malam': 89,
+        'Pewarna': 180,
+        'BiayaProduksi': 11400000,
+        'Permintaan': 285,
+        'Stok': 52
+    }
+
+    nilai_input_9 = {
+        'Kain': 570,
+        'Malam': 86,
+        'Pewarna': 168,
+        'BiayaProduksi': 10900000,
+        'Permintaan': 275,
+        'Stok': 48
+    }
+
+    nilai_input_10 = {
+        'Kain': 630,
+        'Malam': 93,
+        'Pewarna': 187,
+        'BiayaProduksi': 11900000,
+        'Permintaan': 315,
+        'Stok': 54
+    }
+
+    nilai_input = [nilai_input_1, nilai_input_2, nilai_input_3, nilai_input_4, nilai_input_5, nilai_input_6, nilai_input_7, nilai_input_8, nilai_input_9, nilai_input_10]
+
     # Fuzzifikasi input
-    nilai_fuzzy_input = pengendali_fuzzy.fuzzifikasi_input(nilai_input)
+    nilai_fuzzy_input = [pengendali_fuzzy.fuzzifikasi_input(i) for i in nilai_input]
 
     # Terapkan aturan fuzzy
-    himpunan_fuzzy_output = pengendali_fuzzy.terapkan_aturan(nilai_fuzzy_input)
+    himpunan_fuzzy_output = [pengendali_fuzzy.terapkan_aturan(i) for i in nilai_fuzzy_input]
 
     # Defuzzifikasi output
-    nilai_tegas_output = pengendali_fuzzy.defuzzifikasi_output(himpunan_fuzzy_output)
+    nilai_tegas_output = [pengendali_fuzzy.defuzzifikasi_output(i) for i in himpunan_fuzzy_output]
 
     # Menampilkan hasil dalam bentuk tabel
-    hasil_df = pd.DataFrame.from_dict(nilai_tegas_output, orient='index', columns=['Nilai Tegas Output'])
+    hasil_df = [pd.DataFrame.from_dict(i, orient='index', columns=['Nilai Tegas Output']) for i in nilai_tegas_output]
 
     # Menyiapkan data untuk ditampilkan di halaman HTML
     variable_input = variabel_input

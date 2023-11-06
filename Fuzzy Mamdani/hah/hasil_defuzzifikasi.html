@@ -119,7 +119,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Nilai yang Diinputkan -->
         <div class="mb-4">
             <h2 class="text-xl font-bold mb-2">Nilai yang Diinputkan</h2>
@@ -131,43 +131,54 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for var in nilai_inputan %}
+                    {% for inputan in nilai_inputan %}
+                    <td class="px-2 py-2 border text-center bg-blue-100">
+                        Inputan Ke-{{ loop.index }}
+                    </td>
+                    {% for var in inputan %}
                     <tr>
                         <td class="px-4 py-2 border">
                             {{var}}
                         </td>
                         <td class="px-4 py-2 border">
-                            {{ nilai_inputan[var] }}
+                            {{ inputan[var] }}
                         </td>
                     </tr>
+                    {% endfor %}
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Hasil Defuzzifikasi -->
         <div>
             <h2 class="text-xl font-bold mb-2">Hasil Defuzzifikasi</h2>
             <table class="w-full border border-collapse rounded-lg table-striped">
                 <thead>
                     <tr class="bg-blue-500 text-white">
+                        <th class="px-4 py-2 border">Output Ke</th>
                         <th class="px-4 py-2 border">Variable</th>
                         <th class="px-4 py-2 border">Nilai</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for var in hasil_df %}
+                    {% for hasil in hasil_df %}
                     <tr>
+                        <td class="px-4 py-2 border text-center w-1/6">
+                            {{ loop.index }}
+                        </td>
+                        {% for var in hasil %}
                         <td class="px-4 py-2 border">
                             {{var}}
                         </td>
                         <td class="px-4 py-2 border">
-                            {% for i,n in hasil_df[var].items() %}
+                            {% for i,n in hasil[var].items() %}
                             {{i}} : {{n}}
                             <br>
                             {% endfor %}
                         </td>
-                    {% endfor %}
+                        {% endfor %}
+                        {% endfor %}
                 </tbody>
             </table>
         </div>
