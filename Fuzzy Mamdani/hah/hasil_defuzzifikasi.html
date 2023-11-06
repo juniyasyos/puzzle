@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.10.1/dist/full.css" rel="stylesheet">
+    <title>Hasil Fuzzy Mamdani</title>
+</head>
+
+<body class="bg-gray-100 p-4">
+    <div class="container mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Hasil Fuzzy Mamdani</h1>
+
+        <!-- Variabel Input -->
+        <div class="mb-4">
+            <h2 class="text-xl font-bold mb-2">Variabel Input</h2>
+            <table class="w-full border border-collapse rounded-lg table-striped">
+                <thead>
+                    <tr class="bg-blue-500 text-white">
+                        <th class="px-4 py-2 border">Variabel</th>
+                        <th class="px-4 py-2 border">Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for var, val in variable_input.items() %}
+                    <tr>
+                        <td class="px-4 py-2 border">{{ var }}</td>
+                        <td>
+                            <table class="w-full border border-collapse rounded-lg table-striped">
+                                <thead>
+                                    <tr class="bg-blue-400 text-white">
+                                        <th class="px-4 py-2 border">Key</th>
+                                        <th class="px-4 py-2 border">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for key, value in val.items() %}
+                                    <tr>
+                                        <td class="px-4 py-2 border">{{ key }}</td>
+                                        <td class="px-4 py-2 border">{{ value }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Variabel Output -->
+        <div class="mb-4">
+            <h2 class="text-xl font-bold mb-2">Variabel Output</h2>
+            <table class="w-full border border-collapse rounded-lg table-striped">
+                <thead>
+                    <tr class="bg-blue-500 text-white">
+                        <th class="px-4 py-2 border">Variabel</th>
+                        <th class="px-4 py-2 border">Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for var, val in variable_output.items() %}
+                    <tr>
+                        <td class="px-4 py-2 border">{{ var }}</td>
+                        <td>
+                            <table class="w-full border border-collapse rounded-lg table-striped">
+                                <thead>
+                                    <tr class="bg-blue-400 text-white">
+                                        <th class="px-4 py-2 border">Key</th>
+                                        <th class="px-4 py-2 border">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for key, value in val.items() %}
+                                    <tr>
+                                        <td class="px-4 py-2 border">{{ key }}</td>
+                                        <td class="px-4 py-2 border">{{ value }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Aturan yang Diterapkan -->
+        <div class="mb-4">
+            <h2 class="text-xl font-bold mb-2">Aturan yang Diterapkan</h2>
+            <table class="w-full border border-collapse rounded-lg table-striped">
+                <thead>
+                    <tr class="bg-blue-500 text-white">
+                        <th class="px-4 py-2 border">Antaseden</th>
+                        <th class="px-4 py-2 border">konsekuens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for var in aturan_diterapkan %}
+                    <tr>
+                        <td class="px-4 py-2 border">
+                            {% for val_antaseden in var['antaseden'] %}
+                            {{val_antaseden}}
+                            <br>
+                            {% endfor %}
+                        </td>
+                        <td class="px-4 py-2 border">
+                            {% for val_konsekuens in var['konsekuens'] %}
+                            {{val_konsekuens}}
+                            <br>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Nilai yang Diinputkan -->
+        <div class="mb-4">
+            <h2 class="text-xl font-bold mb-2">Nilai yang Diinputkan</h2>
+            <table class="w-full border border-collapse rounded-lg table-striped">
+                <thead>
+                    <tr class="bg-blue-500 text-white">
+                        <th class="px-4 py-2 border">Variable</th>
+                        <th class="px-4 py-2 border">Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for var in nilai_inputan %}
+                    <tr>
+                        <td class="px-4 py-2 border">
+                            {{var}}
+                        </td>
+                        <td class="px-4 py-2 border">
+                            {{ nilai_inputan[var] }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Hasil Defuzzifikasi -->
+        <div>
+            <h2 class="text-xl font-bold mb-2">Hasil Defuzzifikasi</h2>
+            <table class="w-full border border-collapse rounded-lg table-striped">
+                <thead>
+                    <tr class="bg-blue-500 text-white">
+                        <th class="px-4 py-2 border">Variable</th>
+                        <th class="px-4 py-2 border">Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for var in hasil_df %}
+                    <tr>
+                        <td class="px-4 py-2 border">
+                            {{var}}
+                        </td>
+                        <td class="px-4 py-2 border">
+                            {% for i,n in hasil_df[var].items() %}
+                            {{i}} : {{n}}
+                            <br>
+                            {% endfor %}
+                        </td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
